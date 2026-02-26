@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background-color: #F1EAD6;
+  color: #0F571C;
+}
+
+input::placeholder,
+select::placeholder {
+  color: #4D7E58;
+  opacity: 0.7;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #0F571C !important;
+  box-shadow: 0 0 0 2px rgba(15, 87, 28, 0.3);
+}

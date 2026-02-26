@@ -9,10 +9,12 @@ const PROVINCES = ['Oriental Mindoro', 'Occidental Mindoro', 'Palawan', 'Marindu
 const SUBMIT_TIMEOUT_MS = 25000
 
 async function submitToGoogleSheets(data) {
-  const base = import.meta.env.VITE_API_URL || ''
-  const apiUrl = `${base}/api/submit-sheets`
+  const apiBase = import.meta.env.VITE_API_URL || ''
+  const apiUrl = `${apiBase}/api/submit-sheets`
+
   const controller = new AbortController()
   const timeoutId = setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS)
+
   try {
     const res = await fetch(apiUrl, {
       method: 'POST',
@@ -20,7 +22,9 @@ async function submitToGoogleSheets(data) {
       body: JSON.stringify(data),
       signal: controller.signal,
     })
+
     clearTimeout(timeoutId)
+
     const json = await res.json().catch(() => ({}))
     if (!res.ok) throw new Error(json.message || 'Failed to submit to Google Sheets')
     return json

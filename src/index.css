@@ -2,12 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   min-height: 100vh;
+  min-height: 100dvh;
   background-color: #F1EAD6;
   color: #0F571C;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+.safe-area-padding {
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
 input::placeholder,
@@ -21,4 +36,133 @@ select:focus {
   outline: none;
   border-color: #0F571C !important;
   box-shadow: 0 0 0 2px rgba(15, 87, 28, 0.3);
+}
+
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+input, button, select, [role="button"] {
+  touch-action: manipulation;
+}
+
+select.select-styled {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230F571C'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 1.25rem;
+  padding-right: 2.75rem;
+  cursor: pointer;
+}
+
+select.select-styled option {
+  background-color: #FFFFFF;
+  color: #0F571C;
+  padding: 12px 16px;
+  font-weight: 500;
+}
+
+select.select-styled option:first-child {
+  color: #4D7E58;
+  font-weight: 400;
+}
+
+select.select-styled option:hover,
+select.select-styled option:focus {
+  background-color: #e8f0e9;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes dropdownDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropdownUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-dropdown {
+  animation-duration: 0.15s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.animate-dropdown-down {
+  animation-name: dropdownDown;
+}
+
+.animate-dropdown-up {
+  animation-name: dropdownUp;
 }
